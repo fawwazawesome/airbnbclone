@@ -1,2 +1,28 @@
 <h1> Welcome to AirBnB Clone! </h1>
+<%= link_to "Sign in with Google", "/auth/google_oauth2" %>
+
+
+<h2>Listings </h2>
+<%= link_to 'All Listings', controller: 'listings' %>
+<%= link_to 'New Listings', controller: 'listings' %>
+
+
+<h2>Search  </h2>
+<%= form_tag(search_path, method: :get ) do %>
+  Country: <%= text_field_tag :country %><br/>
+  Property: <%= text_field_tag :property %><br/>
+  Rooms: <%= text_field_tag :rooms %><br/>
+  <%= submit_tag 'Search', name: nil %>
+<% end %>
+
+
+
+<h2>Users</h2>
+<% User.all.each do |user| %>
+	<ul>
+		<li>id: <%= user.id %></li>
+		<li>email:  <%= link_to user.email, user_path(user) %></li>
+	</ul>
+
+<% end %>
 

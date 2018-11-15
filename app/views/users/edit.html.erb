@@ -1,0 +1,18 @@
+<h1>Edit Profile</h1>
+
+<%= form_for(@user) do |f| %>
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+    <%= f.submit %>
+<% end %>
+
+
+<h1>Upload your photo</h1>
+
+<%= form_with model: @user,local: true do |f|%>
+	<%= f.label :avatar %>
+	<%= f.file_field :avatar %>
+	<%= f.submit %>
+<% end %>
+
+

@@ -1,0 +1,9 @@
+<p> Hello, Welcome to your Profile </p>
+
+<% if @user.avatar.url %>
+ <%= image_tag(@user.avatar.url) %>
+<% end %>
+<br>
+<%= @user.email %>
+<%= link_to 'Edit', edit_user_path(@user) %>
+<%= link_to 'Back', root_path %>

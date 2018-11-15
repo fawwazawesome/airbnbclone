@@ -1,0 +1,29 @@
+<h1>Edit Listing</h1>
+
+<%= form_for(@listing) do |f| %>
+    <%= f.label :property %>
+    <%= f.text_field :property %>
+    
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+    
+    <%= f.label :country %>
+    <%= f.text_field :country %>
+    
+    <%= f.label :rooms %>
+    <%= f.number_field :rooms %>
+    
+    <%= f.label :toilets %>
+    <%= f.number_field :toilets %>
+    
+    <%= f.label :price %>
+    <%= f.number_field :price %>
+
+
+	<%= f.label :images %>
+	<%= f.file_field :images, multiple: true %>
+
+	<%= f.submit %>
+<% end %>
+
+

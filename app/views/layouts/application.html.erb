@@ -5,18 +5,32 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <!-- Load the Client component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/client.min.js"></script>
+
+    <!-- Load the Hosted Fields component. -->
+    <script src="https://js.braintreegateway.com/web/3.6.3/js/hosted-fields.min.js"></script>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body> 
 
+    <%= button_to 'Home', root_path, method: :get %>
+
     <% if signed_in? %>
+
       Signed in as: <%= current_user.email %>
       <%= button_to 'Sign out', sign_out_path, method: :delete %>
+      <%= button_to 'Profile', user_path(current_user.id), method: :get %>
+
     <% else %>
+
       <%= link_to 'Sign in', sign_in_path %>
+
     <% end %>
+
 
     <div id="flash">
       <% flash.each do |key, value| %>
@@ -25,5 +39,7 @@
     </div>
 
     <%= yield %>
+
+    
   </body>
 </html>

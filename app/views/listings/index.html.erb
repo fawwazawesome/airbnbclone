@@ -1,0 +1,28 @@
+<h1>Property Listing</h1>
+
+<%= link_to 'New listing', new_listing_path %> 
+<table> 
+  <% @listings.each do |listing| %>
+    <tr>
+
+      <td><strong>Listing Property:</strong><%= listing.property %></td>
+      <td><strong>Owner's Name:</strong><%= listing.name %></td>
+      <td><strong>Country:</strong><%= listing.country %></td>
+      <td><strong>No. of Rooms:</strong><%= listing.rooms %></td>
+      <td><strong>No. of Bathrooms:</strong><%= listing.toilets %></td>
+      <td><strong>Price per Night:</strong><%= listing.price %></td>
+      
+      <td><strong>Property Images:</strong>
+        <% listing.images.each do |image| %>
+          <%= image_tag(image.url, width: 50) %>
+        <% end %>
+      </td>
+
+      <td><%= link_to 'Show', listing_path(listing) %></td>
+      <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+      <td><%= link_to 'Destroy', listing_path(listing),
+              method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+    </tr>
+  <% end %>
+</table>

@@ -1,0 +1,71 @@
+
+
+<%= link_to 'Edit', edit_listing_path(@listing) %>
+<strong>Listing Property:</strong>
+<%= @listing.property %>
+<br>
+
+
+<strong>Owner's Name:</strong>
+<%= @listing.name %>
+<br>
+
+
+
+<strong>Country:</strong>
+<%= @listing.country %>
+<br>
+
+
+
+<strong>No. of Rooms:</strong>
+<%= @listing.rooms %>
+<br>
+
+
+
+<strong>No. of Bathrooms:</strong>
+<%= @listing.toilets %>
+<br>
+
+
+
+<strong>Price per Night:</strong>
+<%= @listing.price %>
+<br>
+
+
+
+<strong>Property Images:</strong>
+<br>
+<% @listing.images.each do |image| %>
+  <%= image_tag(image.url) %>
+<% end %>
+<br>
+<br>
+<% if @listing.user != current_user %>
+	<%= form_with model: Reservation.new, url: listing_reservations_path(@listing) do |f| %>
+	  <%= f.date_field :start_date, placeholder: 'Check In Date' %><br>
+	  <%= f.date_field :end_date, placeholder: 'Check Out Date' %><br>
+	  <%= f.submit %>
+	<% end %>
+<% end %>
+<hr>
+<h3>Current Reservations</h3>
+
+<% @listing.reservations.each do |reservation| %>
+	<ul>
+		<li>Start: <%= reservation.start_date %></li>
+		<li>End: <%= reservation.end_date %></li>
+		<li>Booked by: <%= reservation.user.email %></li>
+		<li>Total Price: <%= reservation.total_price %></li>
+		<% if reservation.confirmation == true %>
+			
+		<% else %>
+			<% if reservation.user == current_user %>
+				<%= link_to "Make Payment", reservation_braintree_new_path(reservation.id) %>
+			<% end %>
+		<% end %>
+		
+	</ul>
+<% end %>
